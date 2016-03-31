@@ -14,6 +14,7 @@ module BitBucket
                  :Forks       => 'forks',
                  :Commits     => 'commits',
                  :Download    => 'download',
+                 :Downloads    => 'downloads',
                  :Webhooks    => 'webhooks',
                  :PullRequest => 'pull_request'
 
@@ -76,6 +77,10 @@ module BitBucket
     end
     def download
       @services ||=ApiFactory.new "Repos::Download"
+    end
+
+    def downloads
+      @downloads ||=ApiFactory.new "Repos::Downloads"
     end
 
     # Access to Repos::PullRequests API
