@@ -54,6 +54,15 @@ module BitBucket
           end
         end
       end
+      if response.status == 302
+        download(response.env.response_headers['location'])
+      else
+        response.body
+      end
+    end
+
+    def download(path)
+      response = Faraday.get path
       response.body
     end
 

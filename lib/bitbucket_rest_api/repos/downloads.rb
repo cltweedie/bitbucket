@@ -19,6 +19,14 @@ module BitBucket
     end
     alias :all :list
 
+    def get(user_name, repo_name, file_name, params={})
+      update_validate_and_normalize_params(user_name, repo_name, params)
+
+      response = get_request("/2.0/repositories/#{user_name}/#{repo_name}/downloads/#{file_name}", params)
+      return response unless block_given?
+      response.each { |el| yield el }
+    end
+
     private
     def update_validate_and_normalize_params(user_name, repo_name, params)
       _update_user_repo_params(user_name, repo_name)

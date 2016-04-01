@@ -14,7 +14,7 @@ module BitBucket
         end
 
       RUBY_EVAL
-      env[:body].instance_eval { @env = env }
+      env[:body].instance_eval { @env = env } if env[:body]
     end
 
   end # Response::Helpers
